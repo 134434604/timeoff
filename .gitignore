@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.production
+
+# runtime data: the database, tokens, fixture outboxes
+data/*
+!data/.gitkeep
+
+# operational state of the agent tooling
+.omc/
+
+# port sources kept for reference only; never committed or shipped
+server/reference/
+
+# the owner handoff bundle, built from the clean repo
+timeoff.zip

@@ -1,0 +1,31 @@
+{
+  "name": "smto-timeoff",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node --env-file-if-exists=.env.local server/index.mjs",
+    "build:client": "vite build",
+    "start": "node --env-file-if-exists=.env.local server/index.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "check": "node scripts/check-syntax.mjs && tsc --noEmit -p tsconfig.json && npm test",
+    "qa:walk": "node scripts/qa-walk.mjs",
+    "mock:api": "node scripts/mock-api.mjs",
+    "deploy:dry-run": "node scripts/deploy-release.mjs --dry-run",
+    "deploy:confirm": "node scripts/deploy-release.mjs --confirm"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.14.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.4"
+  }
+}

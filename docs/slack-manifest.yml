@@ -1,0 +1,39 @@
+# Time Off, the Slack app. Paste this at https://api.slack.com/apps →
+# Create New App → From a manifest → (pick the workspace) → YAML.
+# Replace timeoff.<company domain> in the two URLs with where Time Off runs
+# (or run: node scripts/set-domain.mjs timeoff.example.com). Steps after
+# creating it are in docs/SETUP.md, "Slack".
+display_information:
+  name: Time Off
+  description: Ask for time off and approve it without leaving Slack.
+  background_color: "#2f5d50"
+features:
+  bot_user:
+    display_name: Time Off
+    always_online: true
+  # The app talks to people in direct messages; nobody needs to write back.
+  app_home:
+    home_tab_enabled: false
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: true
+  slash_commands:
+    - command: /timeoff
+      url: https://timeoff.<company domain>/api/slack/commands
+      description: Ask for time off, see your balance, or cancel
+      usage_hint: "[balance | cancel | help]"
+      should_escape: false
+oauth_config:
+  scopes:
+    bot:
+      - commands          # the /timeoff command
+      - chat:write        # post and update the approval messages
+      - users:read        # look up who clicked
+      - users:read.email  # match a Slack member to the roster by email
+      - im:write          # open direct messages
+settings:
+  interactivity:
+    is_enabled: true
+    request_url: https://timeoff.<company domain>/api/slack/interactions
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false
